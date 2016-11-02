@@ -33,7 +33,8 @@ struct FlickrApi {
     
     private static func flickrUrl(method: Method, parameters: [String:String]?) -> NSURL {
         
-        let components = NSURLComponents(string: baseUrlString)
+        //Need to force unwrap the string
+        let components = NSURLComponents(string: baseUrlString!)
         var queryItems = [NSURLQueryItem]()
         
         let baseParams = [
