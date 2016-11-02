@@ -36,7 +36,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="QJI-73-ZIP"/>
                     <connections>
-                        <outlet property="imageView" destination="gwI-Go-iVB" id="HTi-A2-Jx8"/>
+                        <outlet property="imageView" destination="gwI-Go-iVB" id="ulu-Ao-KvQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
