@@ -14,6 +14,7 @@
 		98F9B3741DC9C53000E59AFB /* FlickrApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9B3731DC9C53000E59AFB /* FlickrApi.swift */; };
 		98F9B3761DC9D1E600E59AFB /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9B3751DC9D1E600E59AFB /* PhotosViewController.swift */; };
 		98F9B3781DC9D5AE00E59AFB /* PhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9B3771DC9D5AE00E59AFB /* PhotoStore.swift */; };
+		98F9B37A1DC9DFBC00E59AFB /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9B3791DC9DFBC00E59AFB /* Photo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		98F9B3731DC9C53000E59AFB /* FlickrApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrApi.swift; sourceTree = "<group>"; };
 		98F9B3751DC9D1E600E59AFB /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		98F9B3771DC9D5AE00E59AFB /* PhotoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStore.swift; sourceTree = "<group>"; };
+		98F9B3791DC9DFBC00E59AFB /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				98F9B3731DC9C53000E59AFB /* FlickrApi.swift */,
 				98F9B3751DC9D1E600E59AFB /* PhotosViewController.swift */,
 				98F9B3771DC9D5AE00E59AFB /* PhotoStore.swift */,
+				98F9B3791DC9DFBC00E59AFB /* Photo.swift */,
 			);
 			path = Photorama;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 				98BA23771DC9BFA000D0BD9C /* AppDelegate.swift in Sources */,
 				98F9B3781DC9D5AE00E59AFB /* PhotoStore.swift in Sources */,
 				98F9B3741DC9C53000E59AFB /* FlickrApi.swift in Sources */,
+				98F9B37A1DC9DFBC00E59AFB /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
