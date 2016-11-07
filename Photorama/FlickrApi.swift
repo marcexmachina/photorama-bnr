@@ -66,7 +66,6 @@ struct FlickrApi {
     
     static func photosFromJSONData(data: NSData) -> PhotosResult {
         do {
-            //let jsonObject: AnyObject = try NSJSONSerialization.dataWithJSONObject(data, options: [])
             let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
             
             guard let jsonDictionary = jsonObject as? [NSObject:AnyObject],

@@ -6,7 +6,16 @@
 //  Copyright © 2016 marcondev. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+enum ImageResult {
+    case Success(UIImage)
+    case Failure(ErrorType)
+}
+
+enum PhotoError: ErrorType {
+    case ImageCreationError
+}
 
 class PhotoStore {
     
@@ -15,6 +24,7 @@ class PhotoStore {
         return NSURLSession(configuration: config)
     }()
     
+    //Function returns array of Photos if successful, otherwise returns an error
     func fetchRecentPhotos(completion completion: (PhotosResult) -> Void) {
         let url = FlickrApi.recentPhotosUrl()
         let request = NSURLRequest(URL: url)
@@ -33,5 +43,47 @@ class PhotoStore {
         }
         return FlickrApi.photosFromJSONData(jsonData)
     }
+    
+    //Function to fetch image from server
+    func fetchImageForPhoto(photo: Photo, completion: (ImageResult) -> Void) {
+        let photoURL = photo.remoteUrl
+        let request = NSURLRequest(URL: photoURL)
+        let task = session.dataTaskWithRequest(request) {
+            (data, response, error) -> Void in
+            let result = self.processImageRequest(data, error: error)
+            if let httpResponse = response as? NSHTTPURLResponse {
+                print("Status Code: \(httpResponse.statusCode)")
+                print("Header Fields: \(httpResponse.allHeaderFields)")
+            }
+            if case let .Success(image) = result {
+                photo.image = image
+            }
+            completion(result)
+        }
+        task.resume()
+    }
+    
+    func processImageRequest(data: NSData?, error: NSError?) -> ImageResult {
+        guard let
+            imageData = data,
+            image = UIImage(data: imageData) else {
+                
+                //Couldn't create an image
+                if data == nil {
+                    return .Failure(error!)
+                } else {
+                    return .Failure(PhotoError.ImageCreationError)
+                }
+        }
+        return .Success(image)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
