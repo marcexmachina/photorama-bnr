@@ -33,7 +33,7 @@ struct FlickrApi {
     
     private static func flickrUrl(method: Method, parameters: [String:String]?) -> NSURL {
         
-        let components = NSURLComponents(string: baseUrlString)
+        let components = NSURLComponents(string: baseUrlString)!
         var queryItems = [NSURLQueryItem]()
         
         let baseParams = [
@@ -55,8 +55,8 @@ struct FlickrApi {
             }
         }
 
-        components!.queryItems = queryItems
-        return (components?.URL!)!
+        components.queryItems = queryItems
+        return components.URL!
     }
     
     static func recentPhotosUrl() -> NSURL {
