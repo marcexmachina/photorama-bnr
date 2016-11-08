@@ -46,15 +46,23 @@ class PhotoStore {
     
     //Function to fetch image from server
     func fetchImageForPhoto(photo: Photo, completion: (ImageResult) -> Void) {
+        
+        //Return image if it already exists
+        if let image = photo.image {
+            completion(.Success(image))
+            return
+        }
+        
         let photoURL = photo.remoteUrl
         let request = NSURLRequest(URL: photoURL)
         let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
             let result = self.processImageRequest(data, error: error)
-            if let httpResponse = response as? NSHTTPURLResponse {
-                print("Status Code: \(httpResponse.statusCode)")
-                print("Header Fields: \(httpResponse.allHeaderFields)")
-            }
+            // Commenting this out as it's clogging console
+//            if let httpResponse = response as? NSHTTPURLResponse {
+//                print("Status Code: \(httpResponse.statusCode)")
+//                print("Header Fields: \(httpResponse.allHeaderFields)")
+//            }
             if case let .Success(image) = result {
                 photo.image = image
             }

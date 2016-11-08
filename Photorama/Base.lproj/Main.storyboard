@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Photos View Controller-->
+        <!--Photorama-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PhotosViewController" customModule="Photorama" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,10 +20,57 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iUR-vp-0Pg">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gwI-Go-iVB">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tHP-3K-ZFV">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                    </imageView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="erg-JV-F9o">
+                                            <size key="itemSize" width="90" height="90"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="2"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UICollectionViewCell" id="C1W-rf-PaV" customClass="PhotoCollectionViewCell" customModule="Photorama" customModuleProvider="target">
+                                                <rect key="frame" x="2" y="66" width="90" height="90"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E9J-mS-VIa">
+                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                        </imageView>
+                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="C6Y-1J-LR6">
+                                                            <rect key="frame" x="35" y="35" width="20" height="20"/>
+                                                        </activityIndicatorView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="E9J-mS-VIa" firstAttribute="centerY" secondItem="C1W-rf-PaV" secondAttribute="centerY" id="Avs-yN-Jq1"/>
+                                                    <constraint firstAttribute="trailing" secondItem="E9J-mS-VIa" secondAttribute="trailing" id="Mv2-ld-f6J"/>
+                                                    <constraint firstAttribute="bottom" secondItem="E9J-mS-VIa" secondAttribute="bottom" id="TZ6-t7-IPr"/>
+                                                    <constraint firstItem="E9J-mS-VIa" firstAttribute="leading" secondItem="C1W-rf-PaV" secondAttribute="leading" id="VhA-25-s26"/>
+                                                    <constraint firstItem="E9J-mS-VIa" firstAttribute="top" secondItem="C1W-rf-PaV" secondAttribute="top" id="akP-PP-QAE"/>
+                                                    <constraint firstItem="E9J-mS-VIa" firstAttribute="centerX" secondItem="C1W-rf-PaV" secondAttribute="centerX" id="nLt-fI-MOr"/>
+                                                    <constraint firstItem="C6Y-1J-LR6" firstAttribute="centerX" secondItem="C1W-rf-PaV" secondAttribute="centerX" id="opW-uJ-4gw"/>
+                                                    <constraint firstItem="C6Y-1J-LR6" firstAttribute="centerY" secondItem="C1W-rf-PaV" secondAttribute="centerY" id="pMO-rE-4VM"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="imageView" destination="E9J-mS-VIa" id="Hhr-en-lsU"/>
+                                                    <outlet property="spinner" destination="C6Y-1J-LR6" id="rE5-ZO-xVf"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="tHP-3K-ZFV" firstAttribute="leading" secondItem="iUR-vp-0Pg" secondAttribute="leading" id="2EL-Jo-2dh"/>
+                                    <constraint firstItem="tHP-3K-ZFV" firstAttribute="top" secondItem="iUR-vp-0Pg" secondAttribute="top" id="ReE-Lu-QdY"/>
+                                    <constraint firstAttribute="bottom" secondItem="tHP-3K-ZFV" secondAttribute="bottom" id="wLt-4a-8e8"/>
+                                    <constraint firstAttribute="trailing" secondItem="tHP-3K-ZFV" secondAttribute="trailing" id="xyr-QB-tZn"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -34,9 +81,9 @@
                             <constraint firstItem="iUR-vp-0Pg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ybW-e4-WJP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="QJI-73-ZIP"/>
+                    <navigationItem key="navigationItem" title="Photorama" id="QJI-73-ZIP"/>
                     <connections>
-                        <outlet property="imageView" destination="gwI-Go-iVB" id="ulu-Ao-KvQ"/>
+                        <outlet property="collectionView" destination="tHP-3K-ZFV" id="mhe-ug-bLp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
