@@ -76,9 +76,16 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
             }
         }
     }
+        func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            let side = self.view.frame.width / 4 - 3.0
+            return CGSize(width: side, height: side)
+        }
     
     
-    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
     
     
     
