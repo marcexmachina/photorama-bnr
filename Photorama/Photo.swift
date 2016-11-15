@@ -11,7 +11,7 @@ import CoreData
 
 
 class Photo: NSManagedObject {
-
+    
     var image: UIImage?
     
     override func awakeFromInsert() {

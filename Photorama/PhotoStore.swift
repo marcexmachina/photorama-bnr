@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum ImageResult {
     case Success(UIImage)
@@ -18,6 +19,8 @@ enum PhotoError: ErrorType {
 }
 
 class PhotoStore {
+    
+    let coreDataStack = CoreDataStack(modelName: "Photorama")
     
     let session: NSURLSession = {
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -41,7 +44,7 @@ class PhotoStore {
         guard let jsonData = data else {
             return PhotosResult.Failure(error!)
         }
-        return FlickrApi.photosFromJSONData(jsonData)
+        return FlickrApi.photosFromJSONData(jsonData, inContext: self.coreDataStack.mainQueueContext)
     }
     
     //Function to fetch image from server
@@ -53,7 +56,7 @@ class PhotoStore {
             return
         }
         
-        let photoURL = photo.remoteUrl
+        let photoURL = photo.remoteURL
         let request = NSURLRequest(URL: photoURL)
         let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
