@@ -38,9 +38,9 @@ class PhotoStore {
             var result = self.processRecentPhotosRequest(data: data, error: error)
             
             if case let .Success(photos) = result {
-                let mainQueueContext = self.coreDataStack.mainQueueContext
-                mainQueueContext.performBlockAndWait() {
-                    try! mainQueueContext.obtainPermanentIDsForObjects(photos)
+                let privateQueueContext = self.coreDataStack.privateQueueContext
+                privateQueueContext.performBlockAndWait() {
+                    try! privateQueueContext.obtainPermanentIDsForObjects(photos)
                 }
                 let objectIDs = photos.map{$0.objectID}
                 let predicate = NSPredicate(format: "self IN %@", objectIDs)
@@ -65,7 +65,7 @@ class PhotoStore {
         guard let jsonData = data else {
             return PhotosResult.Failure(error!)
         }
-        return FlickrApi.photosFromJSONData(jsonData, inContext: self.coreDataStack.mainQueueContext)
+        return FlickrApi.photosFromJSONData(jsonData, inContext: self.coreDataStack.privateQueueContext)
     }
     
     //Function to fetch image from server
@@ -138,7 +138,30 @@ class PhotoStore {
         return photos
     }
     
-    
+    func fetchMainQueueTags(predicate predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) throws -> [NSManagedObject] {
+        let fetchRequest = NSFetchRequest(entityName: "Tag")
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = sortDescriptors
+        
+        let mainQueueContext = self.coreDataStack.mainQueueContext
+        var mainQueueTags: [NSManagedObject]?
+        var fetchRequestError: ErrorType?
+        
+        mainQueueContext.performBlockAndWait() {
+            do {
+                mainQueueTags = try mainQueueContext.executeFetchRequest(fetchRequest) as? [NSManagedObject]
+            }
+            catch let error {
+                fetchRequestError = error
+            }
+        }
+        
+        guard let tags = mainQueueTags else {
+            throw fetchRequestError!
+        }
+        
+        return tags
+    }
     
     
     

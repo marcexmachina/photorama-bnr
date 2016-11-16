@@ -40,8 +40,24 @@ class PhotoInfoViewController: UIViewController {
         var count = photo.selectionCount.intValue
         count += 1
         photo.selectionCount = NSNumber(integer: Int(count))
-        try! self.store.coreDataStack.saveChanges()
+        
+        do {
+            try self.store.coreDataStack.saveChanges()
+        } catch let error {
+            print("Error saving core data: \(error)")
+        }
+        
         navigationItem.title = "\(photo.title) : \(count) views"
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowTags" {
+            let navController = segue.destinationViewController as! UINavigationController
+            let tagController = navController.topViewController as! TagsViewController
+            tagController.store = store
+            tagController.photo = photo
+        }
+    }
+    
     
 }
