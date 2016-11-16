@@ -14,7 +14,7 @@ class PhotoInfoViewController: UIViewController {
     
     var photo: Photo! {
         didSet{
-            navigationItem.title = photo.title
+            updatePhotoSelectionCount(photo)
         }
     }
     
@@ -34,6 +34,14 @@ class PhotoInfoViewController: UIViewController {
                 print("Error fetching image: \(error)")
             }
         }
+    }
+    
+    func updatePhotoSelectionCount(photo: Photo) {
+        var count = photo.selectionCount.intValue
+        count += 1
+        photo.selectionCount = NSNumber(integer: Int(count))
+        try! self.store.coreDataStack.saveChanges()
+        navigationItem.title = "\(photo.title) : \(count) views"
     }
     
 }

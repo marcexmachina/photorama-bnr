@@ -2,7 +2,7 @@
 //  Photo+CoreDataProperties.swift
 //  Photorama
 //
-//  Created by Marc O'Neill on 09/11/2016.
+//  Created by Marc O'Neill on 16/11/2016.
 //  Copyright © 2016 marcondev. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,10 +14,10 @@ import CoreData
 
 extension Photo {
 
+    @NSManaged var dateTaken: NSDate
     @NSManaged var photoId: String
     @NSManaged var photoKey: String
-    @NSManaged var title: String
-    @NSManaged var dateTaken: NSDate
     @NSManaged var remoteURL: NSURL
-
+    @NSManaged var title: String
+    @NSManaged var selectionCount: NSNumber
 }

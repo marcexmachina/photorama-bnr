@@ -22,5 +22,6 @@ class Photo: NSManagedObject {
         photoKey = NSUUID().UUIDString
         remoteURL = NSURL()
         dateTaken = NSDate()
+        selectionCount = 0
     }
 }
